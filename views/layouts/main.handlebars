@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{#if showTests}}
+        <link rel="stylesheet" href="vendor/mocha.css"/>
+    {{/if}}
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pagina di Prova</title>
 </head>
 <body>
-    <header><img src="./img/circleMitch.jpeg" style="width:128px; height:128px;" alt="Miccel Produzioni Logo" /></header>
+    <header><img src="/img/circleMitch.jpeg" style="width:128px; height:128px;" alt="Miccel Produzioni Logo" /></header>
     {{{body}}}
 </body>
 </html>

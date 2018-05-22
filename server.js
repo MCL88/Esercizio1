@@ -13,7 +13,19 @@ app.set("view engine", "handlebars");
 
 
 //File Statici
-app.use("/",express.static(__dirname + "/public/img"));
+app.use("/",express.static(__dirname + "/public"));
+console.log(__dirname + "/public");
+//Modalità test
+app.use((req, res, next) =>{
+
+    res.locals.showTests = app.get('env') != 'production' && req.query.test === '1';
+    next();
+});
+
+
+
+
+
 //Routes Personali
 app.get("/",(req, res, next)=>{
     res.render("home");
