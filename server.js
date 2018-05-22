@@ -1,5 +1,6 @@
 let express = require("express");
 let path = require("path");
+let phrases =  require("./lib/phrases"); 
 let handlebars = require("express3-handlebars").create({defaultLayout:"main"});
 let app = express();
 
@@ -19,7 +20,7 @@ app.get("/",(req, res, next)=>{
 });
 
 app.get("/about",(req, res, next)=>{
-    res.render("about");
+    res.render("about", {phrase: phrases.getPhrases});
 });
 
 app.get("/contact",(req, res, next)=>{
