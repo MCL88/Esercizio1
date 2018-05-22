@@ -1,0 +1,4 @@
+#File da ignorare nell'upload
+node_modules
+*~
+.DS_Store
