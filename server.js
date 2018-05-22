@@ -1,5 +1,6 @@
 let express = require("express");
 let path = require("path");
+let phrases =  require("./lib/phrases"); 
 let handlebars = require("express3-handlebars").create({defaultLayout:"main"});
 let app = express();
 
@@ -12,14 +13,26 @@ app.set("view engine", "handlebars");
 
 
 //File Statici
-app.use("/",express.static(__dirname + "/public/img"));
+app.use("/",express.static(__dirname + "/public"));
+console.log(__dirname + "/public");
+//Modalità test
+app.use((req, res, next) =>{
+
+    res.locals.showTests = app.get('env') != 'production' && req.query.test === '1';
+    next();
+});
+
+
+
+
+
 //Routes Personali
 app.get("/",(req, res, next)=>{
     res.render("home");
 });
 
 app.get("/about",(req, res, next)=>{
-    res.render("about");
+    res.render("about", {phrase: phrases.getPhrases});
 });
 
 app.get("/contact",(req, res, next)=>{
