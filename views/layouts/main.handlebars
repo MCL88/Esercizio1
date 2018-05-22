@@ -6,11 +6,26 @@
     {{#if showTests}}
         <link rel="stylesheet" href="vendor/mocha.css"/>
     {{/if}}
+    <script src="//code.jquery.com/jquery-2.0.2.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pagina di Prova</title>
 </head>
 <body>
-    <header><img src="/img/circleMitch.jpeg" style="width:128px; height:128px;" alt="Miccel Produzioni Logo" /></header>
+    <header><img src="/img/circleMitch.png" style="width:128px; height:128px;" alt="Miccel Produzioni Logo" /></header>
     {{{body}}}
+    {{#if showTests}}
+        <div id="mocha"></div>
+        <script src="vendor/mocha.js"></script>
+        <script src="vendor/chai.js"></script>
+        <script>
+            mocha.ui("tdd");
+            let assert = chai.assert;
+        </script>
+        <script src="qa/test-global.js"></script>
+        {{#if pageTestScript}}
+            <script src="{{pageTestScript}}"></script>
+        {{/if}}
+        <script>mocha.run();</script>
+    {{/if}}
 </body>
 </html>

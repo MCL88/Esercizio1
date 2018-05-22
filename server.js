@@ -13,8 +13,7 @@ app.set("view engine", "handlebars");
 
 
 //File Statici
-app.use("/",express.static(__dirname + "/public"));
-console.log(__dirname + "/public");
+app.use("/",express.static(path.join(__dirname , "public")));
 //Modalità test
 app.use((req, res, next) =>{
 
@@ -24,15 +23,15 @@ app.use((req, res, next) =>{
 
 
 
-
-
 //Routes Personali
 app.get("/",(req, res, next)=>{
     res.render("home");
 });
 
 app.get("/about",(req, res, next)=>{
-    res.render("about", {phrase: phrases.getPhrases});
+    res.render("about", {
+        phrase: phrases.getPhrases,
+        pageTestScript: "qa/test-about.js"});
 });
 
 app.get("/contact",(req, res, next)=>{
